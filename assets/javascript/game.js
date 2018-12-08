@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var words = ["horse", "revolver", "lasso", "cowboy", "cow", "gunslinger", "saloon"];
+    var words = ["horse", "revolver", "lasso", "cowboy", "cow", "gunslinger", "saloon","coyote","rifle","saddle","shotgun","cactus","whiskey","sheriff","texas","spurs"];
     var guessLeft = 12;
     var winCount = 0;
     var wrongGuess = [];
@@ -12,6 +12,12 @@ $(document).ready(function () {
     var chosenWord = words[Math.floor(Math.random() * words.length)];
 
     var hasUserWon = false;
+    var themeMusic = document.createElement("audio");
+    themeMusic.setAttribute("src", "assets/sounds/Cowboy_Theme.mp3");
+
+    $(".musicbtn").on("click", function() {
+        themeMusic.play();
+      });
 
     //Changes the first initial chosen word into blank spaces
     for (i = 0; i < chosenWord.length; i++) {

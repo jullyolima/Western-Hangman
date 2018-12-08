@@ -4,18 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Word Guess Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Fredericka+the+Great" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Word Guess Game</title>
+    
     
 </head>
 <body>
-    <p>Hangman!</p>
+
+    <div class="jumbotron">
+        <h1 class="display-4 gametitle">Wild West Hangman</h1>
+        <button class="btn btn-warning btn-xs musicbtn">
+                <span class="fa fa-music"></span>Play Music!</button>
+    </div>
+
+    <div class="row mainboxes">
+            <div class="col-sm-6">
+              <div class="card cardboxes">
+                <div class="card-body">
+                  <h5 class="card-title">Game Info</h5>
+                  <p class="card-text" id="wincount-text">Words Guessed Correctly: 0</p>
+                  <p class="card-text" id="guessesleft-text">Guesses Left: 12</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card cardboxes">
+                <div class="card-body">
+                  <h5 class="card-title">Hangman!</h5>
+                  <p class="card-text" id="hiddenword-text"></p>
+                  <p class="card-text" id="wrongguess-text">Letters Guessed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+  <!--   <p>Hangman!</p>
     <p id="wincount-text">Words Guessed Correctly: 0</p>
     <p id="guessesleft-text">Guesses Left: 12 </p>
     <p id="hiddenword-text"></p>
     <div id="wrongguess-text"></div>
-    
+     -->
 
 
 
