@@ -25,7 +25,7 @@ body {
     font-family: 'Fredericka the Great', cursive;
 }
 
-.musicbtn {
+.musicbtn, .pausebtn {
   background-color:lightblue;
 }
 

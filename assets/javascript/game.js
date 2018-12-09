@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var words = ["horse", "revolver", "lasso", "cowboy", "cow", "gunslinger", "saloon","coyote","rifle","saddle","shotgun","cactus","whiskey","sheriff","texas","spurs"];
+    var words = ["horse", "revolver", "lasso", "cowboy", "cow", "gunslinger", "saloon", "coyote", "rifle", "saddle", "shotgun", "cactus", "whiskey", "sheriff", "texas", "spurs"];
     var guessLeft = 12;
     var winCount = 0;
     var wrongGuess = [];
@@ -10,14 +10,15 @@ $(document).ready(function () {
     var hiddenWordText = document.getElementById("hiddenword-text");
     var guessesLeftText = document.getElementById("guessesleft-text");
     var chosenWord = words[Math.floor(Math.random() * words.length)];
-
-    var hasUserWon = false;
     var themeMusic = document.createElement("audio");
     themeMusic.setAttribute("src", "assets/sounds/Cowboy_Theme.mp3");
 
-    $(".musicbtn").on("click", function() {
+    $(".musicbtn").on("click", function () {
         themeMusic.play();
-      });
+    });
+    $(".pausebtn").on("click", function () {
+        themeMusic.pause();
+    });
 
     //Changes the first initial chosen word into blank spaces
     for (i = 0; i < chosenWord.length; i++) {
@@ -38,64 +39,55 @@ $(document).ready(function () {
         for (i = 0; i < chosenWord.length; i++) {
             hiddenWord.push("_");
             hiddenWordText.textContent = hiddenWord.join(" ");
-
         }
-
-        console.log("Hidden Word:" + hiddenWord);
-        console.log("New Word:" + chosenWord);
     };
-
 
     document.onkeyup = function (event) {
         var userGuess = event.key;
-        console.log("Chosen Word: " + chosenWord);
-        console.log("User Guess: " + userGuess);
-        console.log("Index of chosen word: " + chosenWord.indexOf(userGuess));
 
-        
-        if(event.keyCode >= 65 && event.keyCode <= 90){
+        if (event.keyCode >= 65 && event.keyCode <= 90 && guessLeft >= 1) {
 
-        //if the player guesses the letter correctly
-        if (chosenWord.indexOf(userGuess) >= 0) {
-            console.log("correct");
-            console.log("Guesses Left: " + guessLeft);
-            for (var i = 0; i < chosenWord.length; i++) {
-                if (chosenWord[i] == userGuess) {
-                    hiddenWord[i] = userGuess;
+            //if the player guesses the letter correctly
+            if (chosenWord.indexOf(userGuess) >= 0) {
 
-                    hiddenWordText.textContent = hiddenWord.join(" ");
+                for (var i = 0; i < chosenWord.length; i++) {
+                    if (chosenWord[i] == userGuess) {
+                        hiddenWord[i] = userGuess;
+                        hiddenWordText.textContent = hiddenWord.join(" ");
+                    }
                 }
             }
-        }
-        //if the user input has already been guessed, then do nothing
-        else if (wrongGuess.includes(userGuess)) {
-        }
-        //if the user input is wrong, push the guess to to the wrong letter array and take a guess away
-        else {
-            guessLeft = guessLeft - 1;
-            wrongGuess.push(userGuess);
-            wrongGuessText.textContent = wrongGuess.join(" ");
-            guessesLeftText.textContent = "Guesses Left: " + guessLeft;
-            console.log("Guesses Left: " + guessLeft);
-            console.log("wrong");
-        }
+            //if the user input has already been guessed, then do nothing
+            else if (wrongGuess.includes(userGuess)) {
+            }
+            //if the user input is wrong, push the guess to to the wrong letter array and take a guess away
+            else {
+                guessLeft = guessLeft - 1;
+                wrongGuess.push(userGuess);
+                wrongGuessText.textContent = wrongGuess.join(" ");
+                guessesLeftText.textContent = "Guesses Left: " + guessLeft;
 
-        // Checks to see if a word has been completed
-        if (hiddenWord.includes("_")) {
-            hasUserWon = false;
-            console.log(hiddenWord[i]);
+            }
 
+            // Checks to see if a word has been completed
+            if (hiddenWord.includes("_")) {
+                hasUserWon = false;
+            }
+
+            else {
+                winCount++;
+                winCountText.textContent = "Words guessed correctly in a row: " + winCount;
+                hasUserWon = true;
+                resetWord();
+                wrongGuessText.textContent = "Nice! Next word!";
+            }
         }
         else {
-            winCount++;
-            winCountText.textContent = "Words Guessed Correctly: " + winCount;
-            hasUserWon = true;
+            alert("You lost!");
             resetWord();
-            alert("you win!");
+            winCount = 0;
+            winCountText.textContent = "Words guessed correctly in a row: " + winCount;
+            wrongGuessText.textContent = "Letters Guessed";
         }
-        console.log(hasUserWon);
-        //}
-
-    }
     }
 });
